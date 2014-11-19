@@ -4,7 +4,7 @@ FROM ubuntu:trusty
 MAINTAINER Brian Pattison "brian@brianpattison.com"
 
 RUN apt-get update
-RUN apt-get install -y wget
+RUN apt-get install -y build-essential wget
 
 RUN wget http://download.redis.io/releases/redis-2.8.17.tar.gz
 RUN tar xzf redis-2.8.17.tar.gz
