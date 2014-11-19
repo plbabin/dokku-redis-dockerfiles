@@ -8,10 +8,11 @@ RUN apt-get install -y build-essential wget
 
 RUN wget http://download.redis.io/releases/redis-2.8.17.tar.gz
 RUN tar xzf redis-2.8.17.tar.gz
-RUN cd redis-2.8.17 && make install
+RUN mkdir -p /etc/redis/
+RUN cd redis-2.8.17 && cp redis.conf /etc/redis/dokku.conf && make install
 
-RUN sed -i 's@bind 127.0.0.1@bind 0.0.0.0@' /etc/redis/redis.conf
-RUN sed -i 's@daemonize yes@daemonize no@' /etc/redis/redis.conf
+RUN sed -i 's@bind 127.0.0.1@bind 0.0.0.0@' /etc/redis/dokku.conf
+RUN sed -i 's@daemonize yes@daemonize no@' /etc/redis/dokku.conf
 
 ADD . /bin
 RUN chmod +x /bin/start_redis.sh
