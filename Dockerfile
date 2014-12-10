@@ -1,7 +1,9 @@
 # Forked from https://github.com/luxifer/dokku-redis-dockerfiles
+# and from https://github.com/brianpattison/dokku-redis-dockerfiles
+# and inspired by https://github.com/dokku-alt/redis-dockerfiles
 
-FROM ubuntu:utopic
-MAINTAINER Brian Pattison "brian@brianpattison.com"
+FROM ubuntu:14.10
+MAINTAINER Pierre-Luc Babin "plbabin@gmail.com"
 
 RUN apt-get update
 RUN apt-get install -y build-essential wget
@@ -14,6 +16,9 @@ RUN cd redis-2.8.17 && cp redis.conf /etc/redis/dokku.conf && make install
 RUN sed -i 's@bind 127.0.0.1@bind 0.0.0.0@' /etc/redis/dokku.conf
 RUN sed -i 's@daemonize yes@daemonize no@' /etc/redis/dokku.conf
 
-ADD . /bin
 RUN chmod +x /bin/start_redis.sh
 RUN mkdir -p /var/lib/redis
+
+ADD start_redis.sh /usr/bin/start_redis.sh
+
+EXPOSE 6379
