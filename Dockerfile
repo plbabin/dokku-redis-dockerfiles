@@ -16,9 +16,10 @@ RUN cd redis-2.8.17 && cp redis.conf /etc/redis/dokku.conf && make install
 RUN sed -i 's@bind 127.0.0.1@bind 0.0.0.0@' /etc/redis/dokku.conf
 RUN sed -i 's@daemonize yes@daemonize no@' /etc/redis/dokku.conf
 
-RUN chmod +x /bin/start_redis.sh
 RUN mkdir -p /var/lib/redis
 
 ADD start_redis.sh /usr/bin/start_redis.sh
+
+RUN chmod +x /usr/bin/start_redis.sh
 
 EXPOSE 6379
