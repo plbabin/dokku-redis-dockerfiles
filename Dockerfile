@@ -1,6 +1,6 @@
 # Forked from https://github.com/luxifer/dokku-redis-dockerfiles
 
-FROM ubuntu:trusty
+FROM ubuntu:utopic
 MAINTAINER Brian Pattison "brian@brianpattison.com"
 
 RUN apt-get update
